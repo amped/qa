@@ -12,6 +12,10 @@ class doc(object):
 		self.kw=kw
 		self.abstract=abstract
 
+
+        def __repr__(self):
+                return str(self.id)
+
 def get_kw(fpath):
 	#tree = ET.parse('../Geico_TREC_Documents/simple.xml')
 	try:
@@ -49,9 +53,8 @@ def main():
 	for fnum,f in enumerate(filenames):
 		print f
 		doc_obj=get_kw(f)
-		fobj=open('../docobjs/'+str(fnum),'wb')
-		print fobj
-		pickle.dump(doc_obj,fobj)
+                with open('../docobjs/'+str(fnum)+'.pickle','wb') as docfile:
+                  pickle.dump(doc_obj,docfile)
 
 if __name__=="__main__":
 	main()
